@@ -1,16 +1,16 @@
-version: '2'
+version: '3'
 services:
   tmf:
     image: denmor/tmf-server
     container_name: tmf-server
     network_mode: host
     environment:
-      - LOCAL_UID=1000
-      - LOCAL_GID=1000
+      - LOCAL_UID=${LOCAL_UID}
+      - LOCAL_GID=${LOCAL_GID}
+      - GAME_SETTINGS_FILE=${GAME_SETTINGS_FILE}
+      - ADDITIONAL_OPTIONS=${ADDITIONAL_OPTIONS}
     ports:
       - 2350:2350
     volumes:
-      - ./testdata:/tmf/GameData
-      - ./testlogs:/tmf/Logs
-
-
+      - ../tests/tmf/testdata:/tmf/GameData
+      - ../tests/tmf/testlogs:/tmf/Logs

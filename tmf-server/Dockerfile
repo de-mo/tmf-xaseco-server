@@ -1,5 +1,8 @@
 FROM ubuntu:latest
 
+ENV GAME_SETTINGS_FILE=${GAME_SETTINGS_FILE}
+ENV ADDITIONAL_OPTIONS=${ADDITIONAL_OPTIONS}
+
 EXPOSE 2350
 
 LABEL description="A docker image to run Trackmania nations forever server"
@@ -11,13 +14,13 @@ RUN apt-get update  \
     && apt-get install -y --no-install-recommends  \
         gosu \
 	unzip \
-        wget 
+        wget
 
 RUN mkdir /tmf
 WORKDIR /tmf
 
 RUN wget http://files2.trackmaniaforever.com/TrackmaniaServer_2011-02-21.zip \
-    && unzip TrackmaniaServer_2011-02-21.zip \ 
+    && unzip TrackmaniaServer_2011-02-21.zip \
     && rm TrackmaniaServer_2011-02-21.zip \
     && mv GameData GameData_NewInstall
 
@@ -28,5 +31,4 @@ COPY entrypoint.sh /
 RUN chmod +x /entrypoint.sh
 
 ENTRYPOINT ["/entrypoint.sh"]
-CMD ["./TrackmaniaServer", "/game_settings=MatchSettings/Nations/NationsBlue.txt", "/dedicated_cfg=dedicated_cfg.txt", "/nodaemon"]
-
+CMD ./TrackmaniaServer /game_settings=$GAME_SETTINGS_FILE /dedicated_cfg=dedicated_cfg.txt /nodaemon $ADDITIONAL_OPTIONS
