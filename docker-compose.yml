@@ -10,7 +10,24 @@ services:
       - ADDITIONAL_OPTIONS=${TMF_ADDITIONAL_OPTIONS}
     ports:
       - 2350:2350
-      - 3450:3450
     volumes:
       - ${TMF_GAME_DATA_DIR}:/tmf/GameData
       - ${TMF_GAME_LOGS_DIR}:/tmf/Logs
+    networks:
+      - trackmania_network
+
+  xaseco:
+    image: denmor/xaseco-server
+    container_name: xaseco-server
+    depends_on:
+      - tmf
+    environment:
+      - LOCAL_UID=${LOCAL_UID}
+      - LOCAL_GID=${LOCAL_GID}
+    volumes:
+      - ${XASECO_INSTALL_DIR}:/xaseco
+    networks:
+      - trackmania_network
+
+networks:
+  trackmania_network:
