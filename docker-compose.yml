@@ -6,11 +6,11 @@ services:
     environment:
       - LOCAL_UID=${LOCAL_UID}
       - LOCAL_GID=${LOCAL_GID}
-      - GAME_SETTINGS_FILE=${GAME_SETTINGS_FILE}
-      - ADDITIONAL_OPTIONS=${ADDITIONAL_OPTIONS}
+      - GAME_SETTINGS_FILE=${TMF_GAME_SETTINGS_FILE}
+      - ADDITIONAL_OPTIONS=${TMF_ADDITIONAL_OPTIONS}
     ports:
       - 2350:2350
       - 3450:3450
     volumes:
-      - ${GAME_DATA_DIR}:/tmf/GameData
-      - ${GAME_LOGS_DIR}:/tmf/Logs
+      - ${TMF_GAME_DATA_DIR}:/tmf/GameData
+      - ${TMF_GAME_LOGS_DIR}:/tmf/Logs
