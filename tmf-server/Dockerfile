@@ -3,7 +3,7 @@ FROM ubuntu:latest
 ENV GAME_SETTINGS_FILE=${GAME_SETTINGS_FILE}
 ENV ADDITIONAL_OPTIONS=${ADDITIONAL_OPTIONS}
 
-EXPOSE 2350
+EXPOSE 2350 3450
 
 LABEL description="A docker image to run Trackmania nations forever server"
 LABEL serverversion="2.11.26 from 2011-02-21"
