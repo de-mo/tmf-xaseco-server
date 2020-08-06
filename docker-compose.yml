@@ -25,7 +25,8 @@ services:
       - LOCAL_UID=${LOCAL_UID}
       - LOCAL_GID=${LOCAL_GID}
     volumes:
-      - ${XASECO_INSTALL_DIR}:/xaseco
+      - ${XASECO_CONFIG_DIR}:/xaseco/config_files
+      - ${XASECO_LOG_DIR}:/xaseco/log_files
     networks:
       - trackmania_network
 

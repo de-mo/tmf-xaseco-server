@@ -1,12 +1,6 @@
-#!/bin/sh
+#!/bin/bash
 
-# Copy new install
-if [ "$(ls -A /xaseco)" ]; then
-     echo "/xaseco already setup"
-else
-    #Copy default file to /xaseco
-    cp -R /install/xaseco/* /xaseco/
-fi
+../initvolumes.sh
 
 # Setup
 

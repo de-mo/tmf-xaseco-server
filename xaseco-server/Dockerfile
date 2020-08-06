@@ -1,6 +1,6 @@
 FROM php:7.3-cli
 
-VOLUME /xaseco
+VOLUME /xaseco/config_files /xaseco/log_files/
 
 LABEL description="A docker image to run xaseco, a controller server for TMF"
 LABEL serverversion="1.16"
@@ -13,24 +13,19 @@ RUN apt-get update  \
        iputils-ping \
 	     unzip
 
-RUN mkdir /install
-WORKDIR /install
-
 COPY ./xaseco_116.zip .
 
 RUN unzip xaseco_116.zip \
-    && rm xaseco_116.zip \
-    && mv xaseco/newinstall/*.xml xaseco/ \
-    && mv xaseco/newinstall/*.php xaseco/includes/ \
-    && mv xaseco/newinstall/AsecoF.sh xaseco/
+    && rm xaseco_116.zip
 
 # Patches
-COPY bugfix_memoryleaks/* xaseco/includes/
-COPY modernizer/modernizer.inc.php xaseco/includes/
-RUN sed --in-place "/^require_once.*/i require_once('includes/modernizer.inc.php');" xaseco/aseco.php
+COPY bugfix_memoryleaks/* /xaseco/includes/
+COPY modernizer/modernizer.inc.php /xaseco/includes/
+RUN sed --in-place "/^require_once.*/i require_once('includes/modernizer.inc.php');" /xaseco/aseco.php
 
 COPY entrypoint.sh /
-RUN chmod +x /entrypoint.sh
+COPY initvolumes.sh /
+RUN chmod +x /entrypoint.sh && chmod +x /initvolumes.sh
 
 WORKDIR /xaseco
 
