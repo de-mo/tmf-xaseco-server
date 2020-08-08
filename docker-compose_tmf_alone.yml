@@ -1,0 +1,20 @@
+version: '3'
+services:
+  tmf:
+    image: denmor/tmf-server
+    container_name: tmf-server
+    environment:
+      - LOCAL_UID=${LOCAL_UID}
+      - LOCAL_GID=${LOCAL_GID}
+      - GAME_SETTINGS_FILE=${TMF_GAME_SETTINGS_FILE}
+      - ADDITIONAL_OPTIONS=${TMF_ADDITIONAL_OPTIONS}
+    ports:
+      - 2350:2350
+    volumes:
+      - ${TMF_GAME_DATA_DIR}:/tmf/GameData
+      - ${TMF_GAME_LOGS_DIR}:/tmf/Logs
+    networks:
+      - trackmania_network
+
+networks:
+  trackmania_network:
