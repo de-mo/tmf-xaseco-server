@@ -18,13 +18,13 @@ RUN docker-php-ext-install mysqli && docker-php-ext-enable mysqli
 COPY ./xaseco_116.zip .
 
 RUN unzip xaseco_116.zip \
-    && rm xaseco_116.zip \
-    && mkdir /tmf
+    && rm xaseco_116.zip
 
 # Patches
 COPY bugfix_memoryleaks/* /xaseco/includes/
 COPY modernizer/modernizer.inc.php /xaseco/includes/
 RUN sed --in-place "/^require_once.*/i require_once('includes/modernizer.inc.php');" /xaseco/aseco.php
+COPY adaptations/config.xml /xaseco/newinstall/
 
 COPY entrypoint.sh /
 COPY initvolumes.sh /

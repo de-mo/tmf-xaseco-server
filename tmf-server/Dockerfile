@@ -24,6 +24,8 @@ RUN unzip TrackmaniaServer_2011-02-21.zip \
     && rm TrackmaniaServer_2011-02-21.zip \
     && mv GameData GameData_NewInstall
 
+COPY adaptations/dedicated_cfg.txt GameData_NewInstall/
+
 VOLUME /tmf/GameData
 VOLUME /tmf/Logs
 
