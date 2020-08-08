@@ -9,7 +9,10 @@ services:
       - GAME_SETTINGS_FILE=${TMF_GAME_SETTINGS_FILE}
       - ADDITIONAL_OPTIONS=${TMF_ADDITIONAL_OPTIONS}
     ports:
-      - 2350:2350
+      - ${TMF_PORT}:2350/tcp
+      - ${TMF_PORT}:2350/udp
+      - ${TMF_P2P_PORT}:3450/tcp
+      - ${TMF_P2P_PORT}:3450/udp
     volumes:
       - ${TMF_GAME_DATA_DIR}:/tmf/GameData
       - ${TMF_GAME_LOGS_DIR}:/tmf/Logs
@@ -21,7 +24,6 @@ services:
     container_name: xaseco-server
     depends_on:
       - tmf
-      - xaseco_db
     environment:
       - LOCAL_UID=${LOCAL_UID}
       - LOCAL_GID=${LOCAL_GID}
@@ -29,21 +31,12 @@ services:
       - ${XASECO_CONFIG_DIR}:/xaseco/config_files
       - ${XASECO_LOG_DIR}:/xaseco/log_files
     networks:
-      - trackmania_network
-
-  xaseco_db:
-    image: mariadb:latest
-    restart: always
-    container_name: xaseco_db
-    volumes:
-      - ${XASECO_DB_DIR}:/var/lib/mysql
-    environment:
-      - MYSQL_ROOT_PASSWORD=${XASECO_DB_ROOT_PASSWORD}
-      - MYSQL_DATABASE=xaseco
-      - MYSQL_USER=xaseco
-      - MYSQL_PASSWORD=${XASECO_DB_USER_PASSWORD}
-    networks:
-      - trackmania_network
+      trackmania_network:
+        ipv4_address: ${XASECO_IP}
 
 networks:
   trackmania_network:
+    ipam:
+      driver: default
+      config:
+        - subnet: ${XASECO_SUBNET}

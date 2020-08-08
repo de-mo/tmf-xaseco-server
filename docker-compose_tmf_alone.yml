@@ -9,7 +9,10 @@ services:
       - GAME_SETTINGS_FILE=${TMF_GAME_SETTINGS_FILE}
       - ADDITIONAL_OPTIONS=${TMF_ADDITIONAL_OPTIONS}
     ports:
-      - 2350:2350
+      - ${TMF_PORT}:2350/tcp
+      - ${TMF_PORT}:2350/udp
+      - ${TMF_P2P_PORT}:3450/tcp
+      - ${TMF_P2P_PORT}:3450/udp
     volumes:
       - ${TMF_GAME_DATA_DIR}:/tmf/GameData
       - ${TMF_GAME_LOGS_DIR}:/tmf/Logs
