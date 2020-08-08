@@ -21,12 +21,27 @@ services:
     container_name: xaseco-server
     depends_on:
       - tmf
+      - xaseco_db
     environment:
       - LOCAL_UID=${LOCAL_UID}
       - LOCAL_GID=${LOCAL_GID}
     volumes:
       - ${XASECO_CONFIG_DIR}:/xaseco/config_files
       - ${XASECO_LOG_DIR}:/xaseco/log_files
+    networks:
+      - trackmania_network
+
+  xaseco_db:
+    image: mariadb:latest
+    restart: always
+    container_name: xaseco_db
+    volumes:
+      - ${XASECO_DB_DIR}:/var/lib/mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=${XASECO_DB_ROOT_PASSWORD}
+      - MYSQL_DATABASE=xaseco
+      - MYSQL_USER=xaseco
+      - MYSQL_PASSWORD=${XASECO_DB_USER_PASSWORD}
     networks:
       - trackmania_network
 

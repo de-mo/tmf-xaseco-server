@@ -16,7 +16,7 @@ RUN apt-get update  \
 COPY ./xaseco_116.zip .
 
 RUN unzip xaseco_116.zip \
-    && rm xaseco_116.zip
+    && rm xaseco_116.zip 
 
 # Patches
 COPY bugfix_memoryleaks/* /xaseco/includes/
@@ -30,4 +30,4 @@ RUN chmod +x /entrypoint.sh && chmod +x /initvolumes.sh
 WORKDIR /xaseco
 
 ENTRYPOINT ["/entrypoint.sh"]
-CMD php aseco.php TMF </dev/null >aseco.log 2>&1
+CMD php aseco.php TMF
