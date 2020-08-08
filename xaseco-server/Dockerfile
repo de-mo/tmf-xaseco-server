@@ -13,10 +13,13 @@ RUN apt-get update  \
        iputils-ping \
 	     unzip
 
+RUN docker-php-ext-install mysqli && docker-php-ext-enable mysqli
+
 COPY ./xaseco_116.zip .
 
 RUN unzip xaseco_116.zip \
-    && rm xaseco_116.zip 
+    && rm xaseco_116.zip \
+    && mkdir /tmf
 
 # Patches
 COPY bugfix_memoryleaks/* /xaseco/includes/

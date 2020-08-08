@@ -31,6 +31,7 @@ usermod -o -u $LUID -g $GROUPNAME -s /bin/false $USERNAME #>/dev/null 2>&1
 # The rest...
 
 chown -R $USERNAME:$GROUPNAME /xaseco
+chown -R $USERNAME:$GROUPNAME /tmf
 
 # Start exec with user $USERNAME:$GROUPNAME
 
