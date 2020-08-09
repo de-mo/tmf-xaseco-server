@@ -24,6 +24,7 @@ RUN unzip xaseco_116.zip \
 COPY bugfix_memoryleaks/* /xaseco/includes/
 COPY modernizer/modernizer.inc.php /xaseco/includes/
 RUN sed --in-place "/^require_once.*/i require_once('includes/modernizer.inc.php');" /xaseco/aseco.php
+COPY adaptations/config.xml /xaseco/newinstall/
 
 COPY entrypoint.sh /
 COPY initvolumes.sh /
