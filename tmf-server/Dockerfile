@@ -3,12 +3,11 @@ FROM ubuntu:latest
 ENV GAME_SETTINGS_FILE=${GAME_SETTINGS_FILE}
 ENV ADDITIONAL_OPTIONS=${ADDITIONAL_OPTIONS}
 
-EXPOSE 2350/tcp 2350/udp 3450/tcp 3450/udp
+EXPOSE 2350/tcp 2350/udp 3450/tcp 3450/udp 5000
 
 LABEL description="A docker image to run Trackmania nations forever server"
 LABEL serverversion="2.11.26 from 2011-02-21"
-
-MAINTAINER https://github.com/de-mo
+LABEL maintainer="https://github.com/de-mo"
 
 RUN apt-get update  \
     && apt-get install -y --no-install-recommends  \

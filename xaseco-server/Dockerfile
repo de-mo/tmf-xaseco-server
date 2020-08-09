@@ -4,8 +4,7 @@ VOLUME /xaseco/config_files /xaseco/log_files/ /tmf/GameData
 
 LABEL description="A docker image to run xaseco, a controller server for TMF"
 LABEL serverversion="1.16"
-
-MAINTAINER https://github.com/de-mo
+LABEL maintainer="https://github.com/de-mo"
 
 RUN apt-get update  \
     && apt-get install -y --no-install-recommends  \
@@ -18,7 +17,7 @@ RUN docker-php-ext-install mysqli && docker-php-ext-enable mysqli
 COPY ./xaseco_116.zip .
 
 RUN unzip xaseco_116.zip \
-    && rm xaseco_116.zip 
+    && rm xaseco_116.zip
 
 # Patches
 COPY bugfix_memoryleaks/* /xaseco/includes/
