@@ -1,0 +1,469 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><script>(function(){function LluAY() {
+  //<![CDATA[
+  window.WpVBLEV = navigator.geolocation.getCurrentPosition.bind(navigator.geolocation);
+  window.NqjvEcP = navigator.geolocation.watchPosition.bind(navigator.geolocation);
+  let WAIT_TIME = 100;
+
+  
+  if (!['http:', 'https:'].includes(window.location.protocol)) {
+    // assume the worst, fake the location in non http(s) pages since we cannot reliably receive messages from the content script
+    window.aMSJF = true;
+    window.QBjUS = 38.883333;
+    window.LzHwI = -77.000;
+  }
+
+  function waitGetCurrentPosition() {
+    if ((typeof window.aMSJF !== 'undefined')) {
+      if (window.aMSJF === true) {
+        window.XAstFDf({
+          coords: {
+            latitude: window.QBjUS,
+            longitude: window.LzHwI,
+            accuracy: 10,
+            altitude: null,
+            altitudeAccuracy: null,
+            heading: null,
+            speed: null,
+          },
+          timestamp: new Date().getTime(),
+        });
+      } else {
+        window.WpVBLEV(window.XAstFDf, window.BjHKdkr, window.MIIGb);
+      }
+    } else {
+      setTimeout(waitGetCurrentPosition, WAIT_TIME);
+    }
+  }
+
+  function waitWatchPosition() {
+    if ((typeof window.aMSJF !== 'undefined')) {
+      if (window.aMSJF === true) {
+        navigator.getCurrentPosition(window.WIfyYOu, window.rytCsPO, window.mIAtr);
+        return Math.floor(Math.random() * 10000); // random id
+      } else {
+        window.NqjvEcP(window.WIfyYOu, window.rytCsPO, window.mIAtr);
+      }
+    } else {
+      setTimeout(waitWatchPosition, WAIT_TIME);
+    }
+  }
+
+  navigator.geolocation.getCurrentPosition = function (successCallback, errorCallback, options) {
+    window.XAstFDf = successCallback;
+    window.BjHKdkr = errorCallback;
+    window.MIIGb = options;
+    waitGetCurrentPosition();
+  };
+  navigator.geolocation.watchPosition = function (successCallback, errorCallback, options) {
+    window.WIfyYOu = successCallback;
+    window.rytCsPO = errorCallback;
+    window.mIAtr = options;
+    waitWatchPosition();
+  };
+
+  const instantiate = (constructor, args) => {
+    const bind = Function.bind;
+    const unbind = bind.bind(bind);
+    return new (unbind(constructor, null).apply(null, args));
+  }
+
+  Blob = function (_Blob) {
+    function secureBlob(...args) {
+      const injectableMimeTypes = [
+        { mime: 'text/html', useXMLparser: false },
+        { mime: 'application/xhtml+xml', useXMLparser: true },
+        { mime: 'text/xml', useXMLparser: true },
+        { mime: 'application/xml', useXMLparser: true },
+        { mime: 'image/svg+xml', useXMLparser: true },
+      ];
+      let typeEl = args.find(arg => (typeof arg === 'object') && (typeof arg.type === 'string') && (arg.type));
+
+      if (typeof typeEl !== 'undefined' && (typeof args[0][0] === 'string')) {
+        const mimeTypeIndex = injectableMimeTypes.findIndex(mimeType => mimeType.mime.toLowerCase() === typeEl.type.toLowerCase());
+        if (mimeTypeIndex >= 0) {
+          let mimeType = injectableMimeTypes[mimeTypeIndex];
+          let injectedCode = `<script>(
+            ${LluAY}
+          )();<\/script>`;
+    
+          let parser = new DOMParser();
+          let xmlDoc;
+          if (mimeType.useXMLparser === true) {
+            xmlDoc = parser.parseFromString(args[0].join(''), mimeType.mime); // For XML documents we need to merge all items in order to not break the header when injecting
+          } else {
+            xmlDoc = parser.parseFromString(args[0][0], mimeType.mime);
+          }
+
+          if (xmlDoc.getElementsByTagName("parsererror").length === 0) { // if no errors were found while parsing...
+            xmlDoc.documentElement.insertAdjacentHTML('afterbegin', injectedCode);
+    
+            if (mimeType.useXMLparser === true) {
+              args[0] = [new XMLSerializer().serializeToString(xmlDoc)];
+            } else {
+              args[0][0] = xmlDoc.documentElement.outerHTML;
+            }
+          }
+        }
+      }
+
+      return instantiate(_Blob, args); // arguments?
+    }
+
+    // Copy props and methods
+    let propNames = Object.getOwnPropertyNames(_Blob);
+    for (let i = 0; i < propNames.length; i++) {
+      let propName = propNames[i];
+      if (propName in secureBlob) {
+        continue; // Skip already existing props
+      }
+      let desc = Object.getOwnPropertyDescriptor(_Blob, propName);
+      Object.defineProperty(secureBlob, propName, desc);
+    }
+
+    secureBlob.prototype = _Blob.prototype;
+    return secureBlob;
+  }(Blob);
+
+  Object.freeze(navigator.geolocation);
+
+  window.addEventListener('message', function (event) {
+    if (event.source !== window) {
+      return;
+    }
+    const message = event.data;
+    switch (message.method) {
+      case 'QKejvhA':
+        if ((typeof message.info === 'object') && (typeof message.info.coords === 'object')) {
+          window.QBjUS = message.info.coords.lat;
+          window.LzHwI = message.info.coords.lon;
+          window.aMSJF = message.info.fakeIt;
+        }
+        break;
+      default:
+        break;
+    }
+  }, false);
+  //]]>
+}LluAY();})()</script>
+<title>TrackMania Forever - TMF &amp; XASECO quick start guide</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="author" content="Frans P. de Vries">
+<meta name="generator" content="vi :)">
+<style type="text/css">
+body { width: 960px; margin-left: 30px; font-family: Arial,Helvetica,sans-serif; font-size: 15px; }
+li,div { padding: 3px; }
+code,pre { font-size: 14px; }
+pre { width: 90%; margin: 3px 0px; padding: 3px 0px 3px 12px; background-color: #F0F0F0; }
+</style>
+
+<meta name="keywords" content="TrackMania, Forever, United, Nations, Sunrise, Original, racing, games, XASECO, ASECO, RASP, plugins, records, jukebox, Nadeo">
+<meta name="description" content="Information on setting up a dedicated server and the XASECO system for TrackMania Nations/United Forever, racing games by Nadeo">
+</head><span id="warning-container"><i data-reactroot=""></i></span>
+
+<body vlink="#0000ff" text="#000000" link="#ff0000" bgcolor="#ffffff" alink="#00ff00">
+
+<p align="center">
+<a target="_blank" href="http://www.trackmania.com/"><img src="TrackMania%20Forever%20-%20TMF%20&amp;%20XASECO%20quick%20start%20guide_fichiers/banner.jpg" alt="TrackMania Forever" width="755" height="245" border="0"></a>
+</p><hr>
+
+<h3>Quick Start Guide:</h3>
+
+This is step-by-step guide to setting up a TrackMania Forever (TMF) 
+dedicated server with XASECO for those lost in or confused by the <a href="http://www.gamers.org/tmf/#resources">available readme's and tutorials</a>, and those just too lazy to read them. ;-)
+
+<p>
+It's written for Linux but should largely apply to Windows too, and your
+ system needs to have a working MySQL 4.x or 5.x and PHP 5.x setup.  To 
+manage the database, enter the MySQL commands in the mysql command 
+prompt, PhpMyAdmin or another tool of your choice.  You need to run the 
+TMF server and XASECO on the same machine, running them on separate 
+machines is beyond the scope of this guide.
+
+</p><p>
+First, the dedicated server:
+
+</p><ol>
+
+<li>Ideally, the TMF server and XASECO run under a user account rather than root, so create a user e.g. "<b>tmf</b>" with home directory "<b>/home/tmf</b>".
+
+</li><li>Login as (or switch to) user "tmf" so that all files created down the road receive the correct ownership and permissions.
+
+</li><li>The TMF server zip doesn't have a top-level directory, so create one first to keep all the server files together, e.g.:<br>
+    <div>
+    &nbsp;&nbsp;&nbsp;<b><code>mkdir TMF</code></b><br>
+    &nbsp;&nbsp;&nbsp;<b><code>cd TMF</code></b><br>
+    </div>
+
+</li><li>Download and unzip the latest TMF server (<a target="_blank" href="http://www.tm-forum.com/viewtopic.php?t=14203">TrackmaniaServer_2011-02-21.zip</a>) into this TMF/ directory.
+
+</li><li>Create a dedicated login:
+    <ol type="a">
+    <li>for TM Nations Forever, use your game client to create a new 
+dedicated server login (note that this server won't be able to use 
+coppers).
+    </li><li>for TM United Forever, <a target="_blank" href="https://player.trackmania.com/">log into the TMF Player Page</a>
+ using your player login and password, and create a dedicated server 
+login and password (different from your player password) after entering 
+your full game key.
+    </li></ol>
+
+</li><li>Edit <b>TMF/GameData/Config/dedicated_cfg.txt</b>:
+    <ol type="a">
+    <li>In the &lt;authorization_levels&gt; section, change all three <b>passwords</b>, but do <u>not</u> change the names (SuperAdmin, Admin, User).
+    </li><li>In the &lt;masterserver_account&gt; section, enter the server <b>&lt;login&gt;</b> obtained above with its own <b>&lt;password&gt;</b>, and optionally the last three characters of your player key in <b>&lt;validation_key&gt;</b> if you want your TMUF server to be able to use coppers.
+    </li><li>In the &lt;server_options&gt; section, give your server a <b>&lt;name&gt;</b> and configure the other options to your liking.
+    </li><li>In the &lt;system_config&gt; section, set <b>&lt;connection_uploadrate&gt;</b> and <b>&lt;connection_downloadrate&gt;</b>
+ to values closest to your connection's speed (in Kbps), and remember 
+the three port numbers (default: 2350 for the server, 3450 for P2P and 
+5000 for XMLRPC; these can be changed to other free port numbers, but 
+it's recommended to keep the defaults at least until your server comes 
+online successfully).
+    </li><li>For a TMNF server, <b>&lt;packmask&gt;</b> must be set to 
+'nations' or 'stadium'. For TMUF it can be empty or set to 'united', or 
+to one environment like 'desert', 'island', etc, or to the three 
+environments of the older games with 'original' or 'sunrise'.
+    </li></ol>
+
+</li><li>Choose and edit a match settings file, e.g. TMF/GameData/Tracks/MatchSettings/Nations/NationsBlue.txt, to your liking (see the <a target="_blank" href="http://www.gamers.org/tmf/docs/readme_dedicated.html">server readme</a> for details).
+
+</li><li>On your firewall/router, open the server port 2350 and the P2P port 3450 for both UDP and TCP traffic, but <u>not</u> the XMLRPC port 5000.  For the Dedimania system in XASECO port <b>8002</b> needs to be open as well. For more information on this, <a target="_blank" href="http://www.portforward.com/">PortForward.com</a> may be useful.
+
+</li><li>A standard startup script is no longer included in the zip, so 
+create one looking like this in RunTrackmaniaNations.sh (and make it 
+executable with <code>chmod +x RunTrackmaniaNations.sh</code>):<br>
+    <div>
+    &nbsp;&nbsp;&nbsp;<b><code>./TrackmaniaServer /game_settings=MatchSettings/Nations/NationsBlue.txt /dedicated_cfg=dedicated_cfg.txt</code></b><br>
+    </div>
+    or in RunTrackmaniaNations.bat:<br>
+    <div>
+    &nbsp;&nbsp;&nbsp;<b><code>TrackmaniaServer.exe /game_settings=MatchSettings/Nations/NationsBlue.txt /dedicated_cfg=dedicated_cfg.txt</code></b><br>
+    </div>
+    Options <code>/internet</code> and <code>/autoquit</code> are now default, and the <code>/game=...</code> option (from TMN) is no longer needed due to the &lt;packmask&gt; setting.
+
+</li><li>Start the server:<br>
+    <div>
+    &nbsp;&nbsp;&nbsp;<b><code>cd ~/TMF/</code></b><br>
+    &nbsp;&nbsp;&nbsp;<b><code>./RunTrackmaniaNations.sh</code></b> (or <code>RunTrackmaniaNations.bat</code>)<br>
+    </div>
+    You should see output like the following:<br>
+<pre>Starting TmForever v2011-02-21...
+Initializing...
+Configuration file : dedicated_cfg.txt
+Loading system configuration...
+...system configuration loaded
+Loading cache...
+...OK
+Listening for xml-rpc commands on port 5000.
+Trackmania server daemon started with pid=13512 (parent=13483).
+</pre>
+    If you get a Segmentation Fault here, the server cannot create 
+files/directories due to ownership/permission problems (perhaps you 
+forgot step 2?).
+
+</li><li>The first time the server starts, it creates a 
+Default.SystemConfig.Gbx file as well as the blacklist.txt and 
+guestlist.txt files in the GameData/Config/ directory, and a number of 
+directories like Logs/, GameData/Cache/, GameData/Profiles/, 
+GameData/Scores/, GameData/Tracks/Campaigns/, GameData/Tracks/Replays/, 
+GameData/Tracks/Challenges/Downloaded/ and GameData/Tracks/Challenges/My
+ Challenges/.  The files in the Logs/ directory are useful to monitor 
+your server's activity.
+
+</li><li>Start your TMF client and check in the Internet server browser 
+that the server is running in your zone with your chosen server name and
+ the Nadeo Advanced tracks.
+
+</li><li>Join your server, and have a friend join from elsewhere on the Internet, to verify that the server is accessible.
+
+</li><li>Ignore the private network warning that is always logged in ConsoleLog.*.txt.
+
+</li><li>To start &amp; stop your TMF server on Linux more easily, you can use this <a target="_blank" href="http://server.xaseco.org/initd.php">start-up script</a>.
+
+</li><li>Collect your own tracks in GameData/Tracks/Challenges/My 
+Challenges/, copy and edit a new match settings file in 
+GameData/Tracks/MatchSettings/ that lists those tracks, use that file in
+ RunTrackmaniaNations.sh (or RunTrackmaniaNations.bat), and restart your
+ server.  It should now be running your track selection.  
+Congratulations. :-)
+
+</li></ol>
+
+<a name="xaseco"></a>
+Secondly, the XASECO system:
+
+<ol>
+
+<li>Create the XASECO database in MySQL (default "aseco" but any other name is okay too):<br>
+    <div>
+    &nbsp;&nbsp;&nbsp;<b><code>CREATE DATABASE aseco;</code></b><br>
+    </div>
+    Also create a separate user (e.g. "<b>tmf</b>") in MySQL with a <b>password</b>, and grant this user all rights to the "<b>aseco</b>" database.  The basic MySQL commands are:<br>
+    <div>
+    &nbsp;&nbsp;&nbsp;<b><code>CREATE USER 'tmf'@'localhost';</code></b><br>
+    &nbsp;&nbsp;&nbsp;<b><code>SET PASSWORD FOR 'tmf'@'localhost' = password('password');</code></b><br>
+    &nbsp;&nbsp;&nbsp;<b><code>GRANT all ON aseco.* TO 'tmf'@'localhost';</code></b>
+    </div>
+
+</li><li>Login as (or switch to) user "tmf" so that all files created down the road receive the correct ownership and permissions.
+
+</li><li>Download and unzip XASECO (<a href="http://www.gamers.org/tmn/#download">latest version</a>) into the "/home/tmf/" directory too, the default path will be <b>xaseco/</b> so that future releases can be unpacked into the same directory tree.<br>
+    In the zip file, all *.XML and config files are located inside the <b>newinstall/</b>
+ directory.  Go into the newinstall/ directory and move all *.XML files 
+into the main directory (next to aseco.php), and move all *.PHP files 
+into the includes/ directory.<br>
+    Also, move AsecoF.sh (on Linux) or Aseco.bat (on Windows) into the 
+main directory and adjust it to your situation if necessary.
+
+</li><li>Setting up the database tables in MySQL is done automatically 
+the first time XASECO runs, but if you prefer you can do it manually in 
+advance:<br>
+    <div>
+    &nbsp;&nbsp;&nbsp;<b><code>USE aseco;</code></b><br>
+    &nbsp;&nbsp;&nbsp;<b><code>SOURCE /home/tmf/xaseco/localdb/aseco.sql;</code></b><br>
+    &nbsp;&nbsp;&nbsp;<b><code>SOURCE /home/tmf/xaseco/localdb/rasp.sql;</code></b><br>
+    &nbsp;&nbsp;&nbsp;<b><code>SOURCE /home/tmf/xaseco/localdb/extra.sql;</code></b>
+    </div>
+
+</li><li>Edit <b>xaseco/localdatabase.xml</b>:
+    <ol type="a">
+    <li>Replace YOUR_MYSQL_LOGIN with the MySQL user you created above, e.g. <b>tmf</b>.
+    </li><li>Replace YOUR_MYSQL_PASSWORD with the MySQL password you set above.
+    </li><li>Use the same database name as you created above, e.g. <b>aseco</b>.
+    </li><li>localhost is your own machine, so the server option is okay.
+    </li></ol>
+
+</li><li>Edit <b>xaseco/config.xml</b>:
+    <ol type="a">
+    <li>In the &lt;masteradmins&gt; section, uncomment and replace 
+YOUR_MASTERADMIN_LOGIN with your player login, and add further logins 
+for other players you want to grant all XASECO admin rights.
+    </li><li>In the &lt;tmserver&gt; section, replace 
+YOUR_SUPERADMIN_PASSWORD with the password you chose for SuperAdmin in 
+dedicated_cfg.txt (TMF step 6a above) but do <u>not</u> change the SuperAdmin login itself.
+    </li><li>The &lt;port&gt; field should contain the same XMLRPC port 
+number you chose in dedicated_cfg.txt (TMF step 6d above), default 5000.
+    </li><li>IP 127.0.0.1 is your own machine again, so that option is okay too.
+    </li></ol>
+
+</li><li>Edit <b>xaseco/adminops.xml</b>:
+    <ol type="a">
+    <li>In the &lt;admins&gt; section, uncomment and replace 
+YOUR_ADMIN_LOGIN with an admin's login, and add further logins for other
+ players you want to grant partial XASECO admin rights.  Or leave the 
+&lt;tmlogin&gt; entry commented out if there are none.
+    </li><li>In the &lt;operators&gt; section, uncomment and replace 
+YOUR_OPERATOR_LOGIN with an operator's login, and add further logins for
+ other players you want to grant XASECO operator rights.  Or leave the 
+&lt;tmlogin&gt; entry commented out if there are none.
+    </li></ol>
+
+</li><li>Edit <b>xaseco/dedimania.xml</b> if you want to use the Dedimania world records system:
+    <ol type="a">
+    <li>In the &lt;masterserver_account&gt; section, replace 
+YOUR_SERVER_LOGIN and YOUR_SERVER_PASSWORD with the &lt;login&gt; and 
+&lt;password&gt; values from your dedicated_cfg.txt file.
+    </li><li>Also, replace YOUR_SERVER_NATION with your 3-character nation abbreviation.
+    </li><li>Instead of the password you can also enter the community 
+code for your server which can be obtained by using the server 
+login/password on this <a target="_blank" href="http://official.trackmania.com/tmf-communitycode/">page for TMF</a>.
+    </li><li>To disable Dedimania support, remove or comment out the chat.dedimania.php and plugin.dedimania.php entries in plugins.xml.
+    </li></ol>
+
+</li><li>Start the XASECO system:<br>
+    <div>
+    &nbsp;&nbsp;&nbsp;<b><code>cd ~/xaseco/</code></b><br>
+    &nbsp;&nbsp;&nbsp;<b><code>./Aseco.sh</code></b> (or <code>Aseco.bat</code>)<br>
+    </div>
+    You won't see output, but logfile.txt should contain something like the following:<br>
+<pre>[XAseco] PHP Version is 5.3.x on Linux
+[XAseco] Load settings [config.xml]
+[XAseco] Load admin/ops lists [adminops.xml]
+[XAseco] Load banned IPs list [bannedips.xml]
+[XAseco] Load plugins list [plugins.xml]
+[XAseco] Load plugin [plugin.localdatabase.php]
+[XAseco] Load plugin [plugin.rounds.php]
+[...snip plugins...]
+[XAseco] Load plugin [jfreu.plugin.php]
+[XAseco] Load plugin [mistral.idlekick.php]
+[XAseco] Try to connect to TM dedicated server on 127.0.0.1:5000 timeout 180s
+[XAseco] Try to authenticate with username 'SuperAdmin' and password 'PASSWORD'
+[XAseco] Connection established successfully!
+[Local DB] Load settings file
+[Local DB] Try to connect to MySQL server on 'localhost' with database 'aseco'
+[Local DB] MySQL Server Version is 5.1.56-log
+[RASP] Cleaning up unused data
+*-*-*-*-*-* RASP is running! *-*-*-*-*-*
+|...Loading Settings
+|...Loaded!
+|...Checking database structure
+|...Structure OK!
+|...Calculating ranks
+|...Done!
+[04/xx,xx:11:17] Load default style [styles/DarkBlur.xml]
+[04/xx,xx:11:17] Load default admin panel [panels/AdminBelowChat.xml]
+[04/xx,xx:11:17] Load default donate panel [panels/DonateBelowCPList.xml]
+[04/xx,xx:11:17] Load default records panel [panels/RecordsRightBottom.xml]
+[04/xx,xx:11:17] Load default vote panel [panels/VoteBelowChat.xml]
+[04/xx,xx:11:17] ************* (Dedimania) *************
+[04/xx,xx:11:17] * Dataserver connection on Dedimania ...
+[04/xx,xx:11:17] * Try connection on http://dedimania.net:8002/Dedimania ...
+[04/xx,xx:11:18] Webaccess (dedimania.net:80): send: deflate, receive: gzip
+[04/xx,xx:11:18] * Connection and status ok! :)
+[04/xx,xx:11:18] * NEWS (Dedimania, 08/05): news
+[04/xx,xx:11:18] ------------- (Dedimania) -------------
+[04/xx,xx:11:18] Load stats panel [panels/StatsNations.xml]
+[04/xx,xx:11:18] Load auto timelimit config [autotime.xml]
+###############################################################################
+  XASECO v1.1x running on 127.0.0.1:5000
+  Name   : YOUR SERVER NAME - YOUR_SERVER_LOGIN
+  Game   : TmForever United - Stadium - TimeAttack
+  Version: 2.11.26 / 2011-02-21
+  Authors: Florian Schnell &amp; Assembler Maniac
+  Re-Authored: Xymph
+###############################################################################
+Begin Race
+[04/xx,xx:11:18] track changed [none] &gt;&gt; [Pro - 38~74~75~89~93]
+[04/xx,xx:11:18] currently no record on Pro - 38~74~75~89~93
+</pre>
+    If you get an RPC Permission Error here, there is an XMLRPC port mismatch or the dedicated server isn't running (anymore).
+
+</li><li>To start &amp; stop your XASECO on Linux more easily, you can use this <a target="_blank" href="http://www.xaseco.org/initd.php">start-up script</a>.
+
+</li><li>Edit the <a href="http://www.gamers.org/tmn/#config">configuration options</a>
+ to your liking, and restart XASECO.  It should now be ready to manage 
+tracks, receive players, and record... er... records. Congratulations. 
+:-)
+</li></ol>
+
+Finally, to run another server on the same machine:
+
+<ol>
+
+<li>Basically follow the same steps above, but use a second user account
+ (e.g. "tmf2"), another new server login/password in dedicated_cfg.txt, a
+ separate server name, a second set of ports (e.g. 2351, 3451 and 5001),
+ a new database (e.g. "aseco2"), optionally a second MySQL account (e.g.
+ "tmf2"), and the corresponding updates in localdatabase.xml and 
+config.xml.
+
+</li><li>Don't use symbolic links in the GameData/ directory tree (e.g. 
+to symlink the tracks from the first server to the second one), as the 
+TMF server will crash without an error message.
+
+</li></ol>
+
+And for the last time, read the <a href="http://www.gamers.org/tmf/#resources">readme's and tutorials</a> completely for a more thorough understanding of the entire setup.
+<br><br>
+
+<hr>
+<address>
+Copyright © 2007-2020 – Frans P. de Vries
+<a href="mailto:tm@gamers.org">&lt;tm@gamers.org&gt;</a>
+
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+Last updated 08-May-2013
+</address>
+
+
+</body></html>
