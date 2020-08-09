@@ -30,6 +30,7 @@ services:
     volumes:
       - ${XASECO_CONFIG_DIR}:/xaseco/config_files
       - ${XASECO_LOG_DIR}:/xaseco/log_files
+      - ${TMF_GAME_DATA_DIR}:/tmf/GameData
     networks:
       trackmania_network:
         ipv4_address: ${XASECO_IP}

@@ -1,6 +1,6 @@
 FROM php:7.3-cli
 
-VOLUME /xaseco/config_files /xaseco/log_files/
+VOLUME /xaseco/config_files /xaseco/log_files/ /tmf/GameData
 
 LABEL description="A docker image to run xaseco, a controller server for TMF"
 LABEL serverversion="1.16"
@@ -18,8 +18,7 @@ RUN docker-php-ext-install mysqli && docker-php-ext-enable mysqli
 COPY ./xaseco_116.zip .
 
 RUN unzip xaseco_116.zip \
-    && rm xaseco_116.zip \
-    && mkdir /tmf
+    && rm xaseco_116.zip 
 
 # Patches
 COPY bugfix_memoryleaks/* /xaseco/includes/
