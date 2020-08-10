@@ -17,10 +17,12 @@ Simply build the image using the standard docker command or pull the repository 
 
 This image uses environment variables for configuration.
 
-|Available variables  |Description                                         |
-|---------------------|----------------------------------------------------|
-|`LOCAL_UID`          | The id of the local user running the container     |
-|`LOCAL_GID`          | The id of the local group running the container    |
+|Available variables  |Description                                                |
+|---------------------|-----------------------------------------------------------|
+|`LOCAL_UID`          | The id of the local user running the container            |
+|`LOCAL_GID`          | The id of the local group running the container           |
+|`GAME_SETTINGS_FILE` | The location of the game settings file (in the container) |
+|`ADDITIONAL_OPTIONS` | Additional options to start the server (e.g. /lan)        |
 
 ## Volumes
 
